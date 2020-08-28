@@ -1,0 +1,33 @@
+import csv
+
+def write_csv(info_of_student):
+    with open('myCaptain.csv','a',newline='')as csv_file:
+        writer=csv.writer(csv_file)
+
+        if csv_file.tell()==0:
+            writer.writerow(["Name","Roll_no","Contact_no","Class","Email_id"])
+
+        writer.writerow(info_of_student)
+
+if __name__ ==' __main__':
+    con = True
+    num_stu = 1
+    while(con):
+        stu_info = input("Enter the student #{} information in following format(Name Roll_no Contact_no Class Email_id):".format(num_stu))
+        print("Entered information" + stu_info)
+
+        info_of_student = stu_info.split(' ')
+        print("Split up information is:" + info_of_student)
+
+        print("\nThe entered information is-\nName:{}\nRoll_no:{}\nContact_no:{}\nClass:{}\nEmail_id:{}".format(info_of_student[0],info_of_student[1],info_of_student[2],info_of_student[3],info_of_student[4]))
+        check_info = input("Is your information correct?(yes/no) :")
+        if check_info == "yes":
+            write_csv(info_of_student)
+            con_check =input("Do you want to enter deatails of another student?(yes/no):")
+            if con_check == "yes":
+                con = True
+                num_stu=num_stu + 1
+            elif con_check == "no":
+                con = False
+        elif check_info== "no":
+            print("\nPlease re-enter the values")
